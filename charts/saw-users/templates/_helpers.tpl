@@ -267,6 +267,11 @@ metadata:
   {{- end }}
 spec:
   project: {{ $root.Values.argo.project }}
+  ignoreDifferences:
+    - group: kubevirt.io
+      kind: VirtualMachine
+      jsonPointers:
+        - /metadata/annotations/kubemacpool.io~1transaction-timestamp
   destination:
     name: {{ $root.Values.argo.destinationName }}
     namespace: {{ printf "saw-%s" $user.name }}
