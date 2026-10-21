@@ -4,3 +4,7 @@ users:
     profiles:
       - data-science
     pruneOnRemove: true
+  - name: bob
+    profiles:
+      - data-science
+    pruneOnRemove: true
