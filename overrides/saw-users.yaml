@@ -8,6 +8,9 @@ users:
     profiles:
       - data-science
     pruneOnRemove: true
+    egress:
+       extraAllow:
+         - stack-8-bms-4.octo.dell.com
 defaults:
   openshellSaw:
     networkPolicy:
