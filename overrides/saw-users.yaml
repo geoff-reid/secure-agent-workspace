@@ -13,6 +13,8 @@ users:
         extraAllow:
           - stack-8-bms-4.octo.dell.com
           - wttr.in
+      networkPolicy:
+        enabled: true
 
 defaults:
   openshellSaw:
