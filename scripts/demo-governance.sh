@@ -6,7 +6,7 @@
 #
 # Usage: ./scripts/demo-governance.sh [OPENSHELL_SAW_NAME]
 
-set -euo pipefail
+set -euxo pipefail
 
 SAW_NAME="${1:-openshell-saw}"
 NS="${NS:-openshell-agents}"
@@ -45,7 +45,7 @@ gw() {
 }
 
 run_on_vm() {
-  virtctl ssh -i "${SSH_KEY}" -n "${NS}" "cloud-user@vmi/${SAW_NAME}" \
+  virtctl ssh -i "${SSH_KEY}" -n "${NS}" "cloud-user@vm/${SAW_NAME}" \
     --local-ssh-opts="-o StrictHostKeyChecking=no" \
     --local-ssh-opts="-o UserKnownHostsFile=/dev/null" \
     --local-ssh-opts="-o LogLevel=ERROR" \
