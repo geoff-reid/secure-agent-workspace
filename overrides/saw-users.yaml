@@ -24,3 +24,4 @@ defaults:
     egress:
        extraAllow:
          - stack-8-bms-4.octo.dell.com
+           wttr.in
