@@ -8,9 +8,7 @@ users:
     profiles:
       - data-science
     pruneOnRemove: true
-    egress:
-       extraAllow:
-         - stack-8-bms-4.octo.dell.com
+
 defaults:
   openshellSaw:
     networkPolicy:
@@ -23,3 +21,6 @@ defaults:
       endpoints:
       - ip: 192.168.102.122
         port: 6443
+    egress:
+       extraAllow:
+         - stack-8-bms-4.octo.dell.com
