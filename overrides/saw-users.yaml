@@ -8,3 +8,15 @@ users:
     profiles:
       - data-science
     pruneOnRemove: true
+defaults:
+  openshellSaw:
+    networkPolicy:
+      clusterNetworkCIDRs:
+      - 10.128.0.0/14
+      serviceNetworkCIDRs:
+      - 172.30.0.0/16
+    cleanupApi:
+      serviceIP: 172.30.0.1
+      endpoints:
+      - ip: 192.168.102.122
+        port: 6443
