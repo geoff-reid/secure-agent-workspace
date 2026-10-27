@@ -1,3 +1,17 @@
 # Add real account names here after creating them with keycloak-add-users.
 # Each entry creates saw-<name>. Demo entries are in saw-users-demo.yaml.
-users: []
+users:
+  - name: dell
+    pruneOnRemove: true
+defaults:
+  openshellSaw:
+    networkPolicy:
+      clusterNetworkCIDRs:
+      - 10.128.0.0/14
+      serviceNetworkCIDRs:
+      - 172.30.0.0/16
+    cleanupApi:
+      serviceIP: 172.30.0.1
+      endpoints:
+      - ip: 192.168.102.123
+        port: 6443
