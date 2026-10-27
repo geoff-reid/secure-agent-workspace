@@ -1,8 +1,8 @@
 # Add real account names here after creating them with keycloak-add-users.
 # Each entry creates saw-<name>. Demo entries are in saw-users-demo.yaml.
-users: []
-  #  - name: dell
-  #  pruneOnRemove: true
+users: 
+  - name: alice 
+    pruneOnRemove: true
 defaults:
   openshellSaw:
     networkPolicy:
