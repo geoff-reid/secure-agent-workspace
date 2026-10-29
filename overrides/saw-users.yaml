@@ -5,6 +5,11 @@ users:
     profiles:
       - custom-inference
     pruneOnRemove: true
+  - name: bob
+    profiles:
+      - custom-inference
+    pruneOnRemove: true
+
 defaults:
   openshellSaw:
     networkPolicy:
