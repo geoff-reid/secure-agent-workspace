@@ -2,6 +2,8 @@
 # Each entry creates saw-<name>. Demo entries are in saw-users-demo.yaml.
 users: 
   - name: alice 
+    profiles:
+      - custom-inference
     pruneOnRemove: true
 defaults:
   openshellSaw:
@@ -15,3 +17,6 @@ defaults:
       endpoints:
       - ip: 192.168.102.123
         port: 6443
+    egress:
+      extraAllow:
+        - redhataiqwen36-35b-a3b-nvfp4-saw-inference.apps.os-sno-node3.lab11.hop
