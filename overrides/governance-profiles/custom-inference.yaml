@@ -18,8 +18,8 @@ credentials:
 discovery:
   credentials: [api_key]
 endpoints:
-  - host: redhataiqwen36-35b-a3b-nvfp4-saw-inference.apps.os-sno-node3.lab11.hop     # the host of the `url` in the inference Secret
-    port: 443                        # its port (443 for https without one, 8000 for a vLLM Service)
+  - host: https://redhataiqwen36-35b-a3b-nvfp4-predictor.saw-inference.svc.cluster.local     # the host of the `url` in the inference Secret
+    port: 8443                        # its port (443 for https without one, 8000 for a vLLM Service)
     protocol: rest
     enforcement: enforce
     access: read-write

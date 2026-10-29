@@ -21,3 +21,14 @@ defaults:
     egress:
       extraAllow:
         - redhataiqwen36-35b-a3b-nvfp4-saw-inference.apps.os-sno-node3.lab11.hop
+    extraEgress:
+      - to:
+          - namespaceSelector:
+              matchLabels:
+                kubernetes.io/metadata.name: saw-inference
+            podSelector:
+              matchLabels:
+                app: isvc.redhataiqwen36-35b-a3b-nvfp4-predictor
+        ports:
+          - protocol: TCP
+            port: 8443
