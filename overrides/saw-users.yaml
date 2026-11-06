@@ -21,7 +21,7 @@ users:
 defaults:
   openshellSaw:
     networkPolicy:
-      enabled: true
+      enabled: false
       extraEgress:
         - to:
             - namespaceSelector:
