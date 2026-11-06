@@ -5,6 +5,10 @@ users:
     profiles:
       - custom-inference
     pruneOnRemove: true
+  - name: alice 
+    profiles:
+      - custom-inference
+    pruneOnRemove: true
 
 
 
