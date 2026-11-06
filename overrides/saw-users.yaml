@@ -1,12 +1,83 @@
 # Add real account names here after creating them with keycloak-add-users.
 # Each entry creates saw-<name>. Demo entries are in saw-users-demo.yaml.
-users: []
+users:
+  - name: dell 
+    profiles:
+      - custom-inference
+    pruneOnRemove: true
+
+
 
 # For a custom inference endpoint outside the cluster, uncomment this block
 # and replace the hostname with the one in
 # overrides/governance-profiles/custom-inference.yaml and inference.url.
-# defaults:
-#   openshellSaw:
-#     egress:
-#       extraAllow:
-#         - api.inference.example.com
+defaults:
+  openshellSaw:
+    networkPolicy:
+      enabled: true
+      extraEgress:
+        - to:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: saw-llm
+              podSelector:
+                matchLabels:
+                  app: isvc.redhataiqwen36-35b-a3b-nvfp4-predictor
+          ports:
+            - protocol: TCP
+              port: 8080
+      clusterNetworkCIDRs:
+      - 10.128.0.0/14
+      serviceNetworkCIDRs:
+      - 172.30.0.0/16
+    cleanupApi:
+      serviceIP: 172.30.0.1
+      endpoints:
+      - ip: 192.168.102.123
+        port: 6443
+    oidc:
+          caBundle: |
+            -----BEGIN CERTIFICATE-----
+            MIIDcTCCAlmgAwIBAgIIVWATneuv+rkwDQYJKoZIhvcNAQELBQAwJjEkMCIGA1UE
+            AwwbaW5ncmVzcy1vcGVyYXRvckAxNzkzODk3MDI1MB4XDTI2MTEwNTE2NDM0NVoX
+            DTI4MTEwNDE2NDM0NlowKDEmMCQGA1UEAwwdKi5hcHBzLm9zLXNuby1ub2RlMy5s
+            YWIxMS5ob3AwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDQb1BiQ6pT
+            oIjag1QLCyg/1wVy+DE4VAdaWVIVxAGriTceE7+JBo0ekyQmFwtCMTaSNoxAPiy/
+            0jW+8KKJVmeh1yoAKssj5ywCiZKLNDM8+n6KsP5jQf0pxa9esdqJh10Veg0KDgl3
+            56wyGr1JQymrSqdoSZeUv0buE8U3bGgbbOtKg0axN/ENCuDuq7QeaCy05q4wcGZg
+            w1/sG8OtX4XCCO8yHyk15Qz5Hkaek5vpJsngOBShD8PJg2p7/6CLbL9E2zbVePOf
+            J4nwwQSSycM5l0cWT5OpUnW28oV2TMXZ2eW2rgBnUxLaeTNxTCOEyvAU7joO4dBs
+            73WsQBapSSxLAgMBAAGjgaAwgZ0wDgYDVR0PAQH/BAQDAgWgMBMGA1UdJQQMMAoG
+            CCsGAQUFBwMBMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFHS1IgdQtMzlg6wSrmUX
+            NZsYrv78MB8GA1UdIwQYMBaAFKHUx/Qd9JcMpajIGtkM2bn4vIxEMCgGA1UdEQQh
+            MB+CHSouYXBwcy5vcy1zbm8tbm9kZTMubGFiMTEuaG9wMA0GCSqGSIb3DQEBCwUA
+            A4IBAQA2xzlee7gcVL2SGko7NwegcmFQO8S4Vpzz1NV6MJBIpLJ3eMUh/V+F5gP5
+            wAp1t7hWrMXAwv3L4eGLh4uAuH7mSF4g+qsnU9x6JdjoMm18G3iPlJwqW4J631vQ
+            JdTFCJ43lbuBwkyw35ZcAuur8NAiEHJrAodYCf7xKOm7r67h7CL5Kxs/GYhuyvXK
+            gzKZqDkbYDe8teEA17h07h3tiq6ScNPJyeOBCZPaNgnf5KZQKGSuqcK9Zw47OGlt
+            qZ3prUdlhYIyPOsDKidx6dHwbjjQ95WmkKbIJ7UsnLiAtKE4D4jiM23s0FlgIFPP
+            sASg3xuPqCAnnu4MICMB5lsWFE6S
+            -----END CERTIFICATE-----
+            -----BEGIN CERTIFICATE-----
+            MIIDDDCCAfSgAwIBAgIBATANBgkqhkiG9w0BAQsFADAmMSQwIgYDVQQDDBtpbmdy
+            ZXNzLW9wZXJhdG9yQDE3OTM4OTcwMjUwHhcNMjYxMTA1MTY0MzQ0WhcNMjgxMTA0
+            MTY0MzQ1WjAmMSQwIgYDVQQDDBtpbmdyZXNzLW9wZXJhdG9yQDE3OTM4OTcwMjUw
+            ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC+hoKCUgLq01LteBAZGf1E
+            Ucml3taPB0BMbLUb57p6Jbxd4xDlDg7QViCgfyYnas1NwVmw5P8DcMYSdpziGhH9
+            I5nVc1LmBTEAwLblHOTBcLn1Awsegb9aEs1V/pifbJfxFLTyKwsu1cKxaEL7Op0r
+            n3oyWircJpBMBnIm8+qxNAqisHkcTmzretUab+TGfiGjjg/AAKZYg+i0ZmSfc9jh
+            lsIFaT+dbtw8ch+Eevr+pSfndwfIImAJIeI82YuXesU07cJOZhsq8kFj6RkhCDdB
+            LQyzYA8zWZf3YaCZ01nhTQUlJwGBp17G/GDsK2hCFelPbwOwpD86cPW/yY5CP84V
+            AgMBAAGjRTBDMA4GA1UdDwEB/wQEAwICpDASBgNVHRMBAf8ECDAGAQH/AgEAMB0G
+            A1UdDgQWBBSh1Mf0HfSXDKWoyBrZDNm5+LyMRDANBgkqhkiG9w0BAQsFAAOCAQEA
+            j2vgipT0nSF5F4/DAbsoChssGZoWnNYiLzqxzLj9Aay+CB14cKcewKhBkKBSDb6Q
+            BfuoEY13fpuBQROwaGsEgy4IoMKT9qaK3uNALzKEAcG0wPArvw4VCkgqigzssvoY
+            /s/fF11tayqo6XPrzRiGCtTzeDjMQ1yOzMPzj6Ki3659NV109ENy5Q+J+DHfw17K
+            oQvbYSSm1c5u7COTVepOLF1vmsMbqbqQvdXAjYNc8uNzkrUU0lXY4imMXal/o9Eb
+            Y2J9uaAuv+no3HgePY8dEDHu1siWGitA31oUwo/aTVgee0nzctMyZ8laBVxT/9Va
+            7yOnS78V2w6WID3A6cJSLA==
+            -----END CERTIFICATE-----
+
+    # egress:
+    #   extraAllow:
+    #     - api.inference.example.com
