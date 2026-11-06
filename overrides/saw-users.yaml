@@ -13,7 +13,10 @@ users:
     profiles:
       - custom-inference
     pruneOnRemove: true
-
+  - name: frank
+    profiles:
+      - custom-inference
+    pruneOnRemove: true
 
 # For a custom inference endpoint outside the cluster, uncomment this block
 # and replace the hostname with the one in
